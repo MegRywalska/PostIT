@@ -26,7 +26,7 @@ public class PostController {
     }
 
     @PutMapping("")
-    public PostDTO put(@RequestBody PostCreateDTO postCreateDTO) {
+    public PostDTO putPost(@RequestBody PostCreateDTO postCreateDTO) {
         return postService.createPost(postCreateDTO);
     }
 

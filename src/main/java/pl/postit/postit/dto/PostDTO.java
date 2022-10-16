@@ -5,8 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.postit.postit.model.Post;
-import pl.postit.postit.model.StatusPost;
-import pl.postit.postit.model.User;
+import pl.postit.postit.model.Status;
 
 import java.time.LocalDate;
 
@@ -19,7 +18,7 @@ public class PostDTO {
     private Long id;
     private String text;
     private LocalDate creationDate;
-    private StatusPost statusPost;
+    private Status status;
     private int numberOfComments;
     private String creatorPost;
 
@@ -28,7 +27,7 @@ public class PostDTO {
                 .id(post.getId())
                 .text(post.getText())
                 .creationDate(post.getCreationData())
-                .statusPost(post.getStatusPost())
+                .status(post.getStatus())
                 .numberOfComments(post.getComments().size())
                 .creatorPost(post.getCreatorPost()!= null ? post.getCreatorPost().getUsername() : "Unknown")
                 .build();

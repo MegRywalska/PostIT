@@ -1,6 +1,6 @@
 package pl.postit.postit.model;
 
-public enum StatusPost {
+public enum Status {
     ORIGINAL,
     EDIT
 }

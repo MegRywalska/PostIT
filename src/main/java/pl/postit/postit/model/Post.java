@@ -9,8 +9,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Data
 @Builder
 public class Post {
 
@@ -24,11 +23,11 @@ public class Post {
     private LocalDate creationData;
 
     @Enumerated(EnumType.STRING)
-    private StatusPost statusPost;
+    private Status status;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(mappedBy = "post")
+    @OneToMany
     private Set<Comment> comments;
 
     @EqualsAndHashCode.Exclude

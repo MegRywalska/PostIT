@@ -12,10 +12,9 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostCreateDTO {
+public class CommentCreateDTO {
 
     private String text;
     private LocalDate creationDate = LocalDate.now();
     private Status status = Status.ORIGINAL;
-
 }

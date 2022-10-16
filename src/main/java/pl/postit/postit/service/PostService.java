@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.postit.postit.dto.PostCreateDTO;
 import pl.postit.postit.dto.PostDTO;
 import pl.postit.postit.model.Post;
+import pl.postit.postit.model.Status;
 import pl.postit.postit.repository.PostRepository;
 
 import javax.persistence.EntityNotFoundException;
@@ -23,32 +24,27 @@ public class PostService {
     }
 
     public List<PostDTO> getPosts() {
-        return postRepository.findAll()
-                .stream()
-                .map(PostDTO::fromPost)
-                .collect(Collectors.toList());
+        return postRepository.findAll().stream().map(PostDTO::fromPost).collect(Collectors.toList());
     }
 
-    public  PostDTO createPost(PostCreateDTO postCreate){
+    public PostDTO createPost(PostCreateDTO postCreate) {
         Post post = Post.builder().text(postCreate.getText()).build();
         return PostDTO.fromPost(postRepository.save(post));
     }
 
-    public void deletePostById(Long id){
+    public void deletePostById(Long id) {
         postRepository.deleteById(id);
     }
 
-    public PostDTO updatePostById (Long id, PostCreateDTO updateInformation){
+    public PostDTO updatePostById(Long id, PostCreateDTO updateInformation) {
         Optional<Post> searchedPostOptional = postRepository.findById(id);
-        if (searchedPostOptional.isPresent()){
+        if (searchedPostOptional.isPresent()) {
             Post post = searchedPostOptional.get();
             post.setText(updateInformation.getText());
+            post.setStatus(Status.EDIT);
 
             return PostDTO.fromPost(postRepository.save(post));
         }
-        throw  new EntityNotFoundException(("Didn't find post with id: " + id));
-
+        throw new EntityNotFoundException(("Didn't find post with id: " + id));
     }
-
-
 }
