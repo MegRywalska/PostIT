@@ -24,7 +24,7 @@ public class ApplicationUserService implements UserDetailsService {
         Optional<User> userOptional = userRepository.findByEmail(email);
         if(userOptional.isPresent()){
             log.info("Email found, logging user: " + email);
-            return (UserDetails) userOptional.get();
+            return userOptional.get();
         }
         throw new UsernameNotFoundException("Can't find user with this email: " + email);
     }

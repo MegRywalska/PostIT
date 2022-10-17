@@ -6,9 +6,12 @@ import pl.postit.postit.dto.PostCreateDTO;
 import pl.postit.postit.dto.PostDTO;
 import pl.postit.postit.model.Post;
 import pl.postit.postit.model.Status;
+import pl.postit.postit.model.User;
 import pl.postit.postit.repository.PostRepository;
+import pl.postit.postit.repository.UserRepository;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,18 +21,38 @@ import java.util.stream.Collectors;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final UserRepository userRepository;
 
-    public PostDTO getPostById(Long id) {
-        return PostDTO.fromPost(postRepository.getReferenceById(id));
+    public List<PostDTO> getPosts(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if(userOptional.isPresent()) {
+            return postRepository.findAllByCreatorPost(userOptional.get())
+                    .stream()
+                    .map(PostDTO::fromPost)
+                    .collect(Collectors.toList());
+        }
+
+        throw new EntityNotFoundException("Unable to find user.");
     }
 
     public List<PostDTO> getPosts() {
         return postRepository.findAll().stream().map(PostDTO::fromPost).collect(Collectors.toList());
     }
 
-    public PostDTO createPost(PostCreateDTO postCreate) {
-        Post post = Post.builder().text(postCreate.getText()).build();
-        return PostDTO.fromPost(postRepository.save(post));
+    public PostDTO createPost(PostCreateDTO createRequest, Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if(userOptional.isPresent()) {
+            Post post = Post.builder()
+                    .status(Status.ORIGINAL)
+                    .text(createRequest.getText())
+                    .comments(new HashSet<>())
+                    .creatorPost(userOptional.get())
+                    .build();
+
+            return PostDTO.fromPost(postRepository.save(post));
+        }
+
+        throw new EntityNotFoundException("Unable to find user.");
     }
 
     public void deletePostById(Long id) {

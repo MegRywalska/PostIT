@@ -34,7 +34,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // mówimy że do logowania ma być używany nasz serwis i encryptor wskazany w passwordEncoder
         auth.userDetailsService(applicationUserService).passwordEncoder(bCryptPasswordEncoder);
     }
 
