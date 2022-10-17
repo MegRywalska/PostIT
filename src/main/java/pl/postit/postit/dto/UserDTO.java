@@ -26,7 +26,6 @@ public class UserDTO {
                 .username(user.getUsername())
                 .password(user.getPassword())
                 .email(user.getEmail())
-                .dateOfBirth(user.getDateOfBirth())
                 .build();
     }
 

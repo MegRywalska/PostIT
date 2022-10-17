@@ -19,7 +19,7 @@ public class User {
     private String password;
 
     private String email;
-    private LocalDate dateOfBirth;
+//    private LocalDate dateOfBirth;
 
 //    @OneToMany(fetch= FetchType.EAGER)
 //    @EqualsAndHashCode.Exclude
@@ -52,7 +52,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.email=email;
-        this.dateOfBirth = dateOfBirth;
         this.statusAccount = statusAccount;
         this.posts = posts;
         this.comments = comments;

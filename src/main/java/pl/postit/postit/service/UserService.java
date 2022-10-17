@@ -27,7 +27,7 @@ public class UserService {
     }
 
     public UserDTO createUser(UserRequestDTO createRequest) {
-        User user = User.builder().username(createRequest.getUsername()).password(createRequest.getPassword()).email(createRequest.getEmail()).dateOfBirth(createRequest.getDateOfBirth()).statusAccount(StatusAccount.OFFLINE).build();
+        User user = User.builder().username(createRequest.getUsername()).password(createRequest.getPassword()).email(createRequest.getEmail()).statusAccount(StatusAccount.OFFLINE).build();
 
         return UserDTO.fromUser(userRepository.save(user));
     }
@@ -40,7 +40,6 @@ public class UserService {
             user.setPassword(updatedInformation.getPassword());
             user.setEmail(updatedInformation.getEmail());
             user.setUsername(updatedInformation.getUsername());
-            user.setDateOfBirth(updatedInformation.getDateOfBirth());
 
             return UserDTO.fromUser(userRepository.save(user));
         }

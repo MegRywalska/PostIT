@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.postit.postit.dto.PostCreateDTO;
 import pl.postit.postit.dto.PostDTO;
+import pl.postit.postit.service.ApplicationUserService;
 import pl.postit.postit.service.PostService;
 
+import java.security.Principal;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -14,6 +16,7 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
+    private final ApplicationUserService applicationUserService;
 
     @GetMapping("/{id}")
     public PostDTO getPost(@PathVariable(name = "id") Long id) {
