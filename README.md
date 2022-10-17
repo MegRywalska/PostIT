@@ -4,12 +4,12 @@ Under the project there will be 2 sides developed, one for Frontend and one for 
 The goal of this project is to create a platform, where users can create distinct accounts and will be able to Post their thouughts to share with other users
 and to be able to comment one another Posts.
 
-In further develompent it will be possible to follow other users and react to their actions accordingly by using emoji's like hearts, likes etc.
+In further development it will be possible to follow other users and react to their actions accordingly by using emoji's like hearts, likes etc.
 Project is exclusively developed by Małgorzata Rywalska.
 
 Technologies used:
-Backend - Spring (SpringSecurity, Spring Boot, SpringData, JPA), Lombok, MySQL, MapStruct, Jason Webtoken,
-Frontend - separate Angulaj app
+Backend - Spring (SpringSecurity, Spring Boot, SpringData, JPA), Lombok, MySQL, MapStruct, Jason Webtoken, https://github.com/MegRywalska/PostIT
+Frontend - separate Angulaj app https://github.com/MegRywalska/post-it
 
 Project is developed with usage of Maven with dependencies described in .POM.xml.
 
